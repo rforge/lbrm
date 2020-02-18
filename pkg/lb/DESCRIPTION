@@ -1,0 +1,14 @@
+Package: lb
+Type: Package
+Title: Log-Binomial Regression
+Version: 1.1
+Author: Florian Schwendinger [aut, cre]
+Maintainer: Florian Schwendinger <FlorianSchwendinger@gmx.at>
+Description: 'Log-Binomial' regression is commonly used to estimate 
+	relative risks. This package contains functions estimate 
+	relative risks via the 'Log-Binomial' model and data generating
+	functions to assist in the assessment of the estimation.
+Imports: stats, slam, utils, ROI (>= 0.3-2), ROI.plugin.ecos, ROI.plugin.scs, ROI.plugin.lpsolve, alabama, R.utils, R.oo, R.methodsS3
+Suggests: ipoptr
+License: GPL-3
+RoxygenNote: 6.1.1
