@@ -4,7 +4,7 @@
 \alias{lb_convex}
 \title{Fitting Log-Binomial Models by Convex Optimization}
 \usage{
-lb_convex(x, y, method = c("dense", "sparse", "weighted"), tol = 1e-08,
+lb_convex(x, y, method = c("dense", "sparse"), tol = 1e-08,
   ceps = 1e-07, control = list(), dry_run = FALSE, solver = "ecos")
 }
 \arguments{
@@ -13,7 +13,7 @@ lb_convex(x, y, method = c("dense", "sparse", "weighted"), tol = 1e-08,
 \item{y}{vector of observations of length \code{n}.}
 
 \item{method}{a character string giving the method used to construct the optimization problem,
-possible}
+possible options are \code{"dense"} aned \code{"sparse"}.}
 
 \item{tol}{tolerance for the optimizer (default is \code{1e-8}).}
 

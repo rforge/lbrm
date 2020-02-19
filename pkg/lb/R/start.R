@@ -1,4 +1,13 @@
 
+
+#' @title Find a starting value
+#' @param y vector of observations of length \code{n}.
+#' @param x design matrix of dimension \code{n * p}.
+#' @param method a character string giving the method used to select the starting values.
+#'      The use of \code{"simple"} or \code{"lp"} is recommended.
+#' @param delta a numeric additionaly substracted from the intercept.
+#' @return a vector giving the starting values.
+#' @export
 lb_start <- function(y, x, method = c("lp", "simple", "poisson", "unconstrained"), delta = 1) {
     method <- match.arg(method)
     start <- c(-1, double(ncol(x) - 1L))

@@ -1,0 +1,83 @@
+---
+title: "Conic Log-Binomial Regression"
+author: Florian Schwendinger
+output: md_document
+---
+
+# Conic Log-Binomial Regression
+
+This **README** provides some additional details on the **lb** package.
+The **lb** package was compiled to further the reproducibility
+of the `Conic Log-Binomial Regression` paper.
+
+## Simulations A
+The simulation settings A can be reproduced by using the function
+`simdata_blizhosm2006`.
+```{r}
+set.seed(0)
+library(lb)
+
+nobs <- 500L
+setting <- 1L
+d <- simdata_blizhosm2006(nobs, setting = setting)
+
+s <- lb_convex(d$x, d$y)
+betahat_1 <- setNames(as.double(s), sprintf("beta%i", seq_along(s) - 1L))
+betahat_1
+
+start <- lb:::lb_start(d$y, d$x)
+s <- lb_coptim(d$x, d$y, start = start)
+betahat_2 <- setNames(s$par, sprintf("beta%i", seq_along(s$par) - 1L))
+betahat_2
+
+s <- lb_auglag(d$x, d$y, start = start)
+betahat_3 <- setNames(s$par, sprintf("beta%i", seq_along(s$par) - 1L))
+betahat_3
+```
+
+## Simulations B
+The simulation settings B can be reproduced by using the function
+`simdata_savuliuyasui2009`.
+```{r}
+nobs <- 500L
+setting <- 1L
+d <- simdata_savuliuyasui2009(nobs, setting = setting)
+
+s <- lb_convex(d$x, d$y)
+betahat_1 <- setNames(as.double(s), sprintf("beta%i", seq_along(s) - 1L))
+betahat_1
+
+start <- lb:::lb_start(d$y, d$x)
+s <- lb_coptim(d$x, d$y, start = start)
+betahat_2 <- setNames(s$par, sprintf("beta%i", seq_along(s$par) - 1L))
+betahat_2
+
+s <- lb_auglag(d$x, d$y, start = start)
+betahat_3 <- setNames(s$par, sprintf("beta%i", seq_along(s$par) - 1L))
+betahat_3
+```
+
+## Simulations C
+The simulation settings C can be reproduced by using the function
+`sim_data_marschner_plus_minus`.
+```{r}
+nobs <- 500L
+ncov <- 10L
+d <- sim_data_marschner_plus_minus(nobs, ncov)
+
+s <- lb_convex(d$x, d$y)
+betahat_1 <- setNames(as.double(s), sprintf("beta%i", seq_along(s) - 1L))
+betahat_1
+
+start <- lb:::lb_start(d$y, d$x)
+s <- lb_coptim(d$x, d$y, start = start)
+betahat_2 <- setNames(s$par, sprintf("beta%i", seq_along(s$par) - 1L))
+betahat_2
+
+s <- lb_auglag(d$x, d$y, start = start)
+betahat_3 <- setNames(s$par, sprintf("beta%i", seq_along(s$par) - 1L))
+betahat_3
+```
+
+## References
+Schwendinger F, Bettina Gruen, Hornik K (2020) Conic Log-Binomial Regression

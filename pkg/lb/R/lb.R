@@ -143,7 +143,7 @@ lb_convex_weighted <- function(x, y, tol = 1e-8, ceps = 1e-7, control = list(),
 #' @param x design matrix of dimension \code{n * p}.
 #' @param y vector of observations of length \code{n}.
 #' @param method a character string giving the method used to construct the optimization problem,
-#'     possible
+#'     possible options are \code{"dense"} aned \code{"sparse"}.
 #' @param tol tolerance for the optimizer (default is \code{1e-8}).
 #' @param ceps epsilon subtracted from the right hand side (\eqn{X \beta \leq 0 - ceps}).
 #'  Since the inequality \eqn{X \beta \leq 0} is only fullfilled to a certain tolerance
@@ -157,7 +157,7 @@ lb_convex_weighted <- function(x, y, tol = 1e-8, ceps = 1e-7, control = list(),
 #' d <- simdata_blizhosm2006(500, 1)
 #' lb_convex(d$x, d$y)
 #' @export
-lb_convex <- function(x, y, method = c("dense", "sparse", "weighted"), 
+lb_convex <- function(x, y, method = c("dense", "sparse"), 
     tol = 1e-8, ceps = 1e-7, control = list(), dry_run = FALSE, solver = "ecos") {
 
     method <- match.arg(method)
@@ -183,7 +183,12 @@ neg_log_likelihood_default <- function(x, y, beta) {
     -sum(dbinom(x = y, size = 1L, prob = exp(eta), log = TRUE))
 }
 
-elog <- function(x) ifelse(x > 0, log(x), -Inf)
+elog <- function(x) {
+    ans <- rep_len(-Inf, length(x))
+    b <- x > 0
+    ans[b] <- log(x[b])
+    ans
+} 
 
 neg_log_likelihood_auglag <- function(x, y, beta) {
     eta <- drop(tcrossprod(beta, x))
