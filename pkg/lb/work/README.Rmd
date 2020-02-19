@@ -1,14 +1,23 @@
 ---
 title: "Conic Log-Binomial Regression"
 author: Florian Schwendinger
-output: md_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
-
-# Conic Log-Binomial Regression
 
 This **README** provides some additional details on the **lb** package.
 The **lb** package was compiled to further the reproducibility
 of the `Conic Log-Binomial Regression` paper.
+
+The code can be downloaded by
+```{bash, eval = FALSE}
+svn checkout svn://r-forge.r-project.org/svnroot/lbrm/
+```
+the package can be installed from `R-Forge`.
+```{r, eval = FALSE}
+install.packages("lb", repos="http://R-Forge.R-project.org")
+```
 
 ## Simulations A
 The simulation settings A can be reproduced by using the function
